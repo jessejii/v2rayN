@@ -1,0 +1,134 @@
+Subject: [PATCH] update
+---
+Index: v2rayN/ServiceLib/Handler/AutoStartupHandler.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/v2rayN/ServiceLib/Handler/AutoStartupHandler.cs b/v2rayN/ServiceLib/Handler/AutoStartupHandler.cs
+--- a/v2rayN/ServiceLib/Handler/AutoStartupHandler.cs	(revision 2ab1b9068f2fb83492a4e9ef976d0372d3275584)
++++ b/v2rayN/ServiceLib/Handler/AutoStartupHandler.cs	(revision 4b9084c54d7aefd4bb6c730000617ae28075763e)
+@@ -109,7 +109,7 @@
+         task.Settings.RunOnlyIfIdle = false;
+         task.Settings.IdleSettings.StopOnIdleEnd = false;
+         task.Settings.ExecutionTimeLimit = TimeSpan.Zero;
+-        task.Triggers.Add(new Microsoft.Win32.TaskScheduler.LogonTrigger { UserId = logonUser, Delay = TimeSpan.FromSeconds(30) });
++        task.Triggers.Add(new Microsoft.Win32.TaskScheduler.LogonTrigger { UserId = logonUser, Delay = TimeSpan.FromSeconds(5) });
+         task.Principal.RunLevel = Microsoft.Win32.TaskScheduler.TaskRunLevel.Highest;
+         task.Actions.Add(new Microsoft.Win32.TaskScheduler.ExecAction(fileName.AppendQuotes(), null, Path.GetDirectoryName(fileName)));
+ 
+Index: v2rayN/v2rayN.Desktop/Views/MainWindow.axaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/v2rayN/v2rayN.Desktop/Views/MainWindow.axaml b/v2rayN/v2rayN.Desktop/Views/MainWindow.axaml
+--- a/v2rayN/v2rayN.Desktop/Views/MainWindow.axaml	(revision 2ab1b9068f2fb83492a4e9ef976d0372d3275584)
++++ b/v2rayN/v2rayN.Desktop/Views/MainWindow.axaml	(revision 4b9084c54d7aefd4bb6c730000617ae28075763e)
+@@ -104,14 +104,6 @@
+                         </MenuItem.Header>
+                     </MenuItem>
+ 
+-                    <MenuItem x:Name="menuPromotion" Padding="8,0">
+-                        <MenuItem.Header>
+-                            <StackPanel Orientation="Horizontal">
+-                                <TextBlock Text="{x:Static resx:ResUI.menuPromotion}" />
+-                            </StackPanel>
+-                        </MenuItem.Header>
+-                    </MenuItem>
+-
+                     <MenuItem x:Name="menuClose" Padding="8,0">
+                         <MenuItem.Header>
+                             <StackPanel Orientation="Horizontal">
+Index: v2rayN/v2rayN.Desktop/Views/MainWindow.axaml.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/v2rayN/v2rayN.Desktop/Views/MainWindow.axaml.cs b/v2rayN/v2rayN.Desktop/Views/MainWindow.axaml.cs
+--- a/v2rayN/v2rayN.Desktop/Views/MainWindow.axaml.cs	(revision 2ab1b9068f2fb83492a4e9ef976d0372d3275584)
++++ b/v2rayN/v2rayN.Desktop/Views/MainWindow.axaml.cs	(revision 4b9084c54d7aefd4bb6c730000617ae28075763e)
+@@ -33,7 +33,7 @@
+ 
+         this.KeyDown += MainWindow_KeyDown;
+         menuSettingsSetUWP.Click += menuSettingsSetUWP_Click;
+-        menuPromotion.Click += menuPromotion_Click;
++//        menuPromotion.Click += menuPromotion_Click;
+         menuCheckUpdate.Click += MenuCheckUpdate_Click;
+         menuBackupAndRestore.Click += MenuBackupAndRestore_Click;
+         menuClose.Click += MenuClose_Click;
+@@ -335,10 +335,10 @@
+         }
+     }
+ 
+-    private void menuPromotion_Click(object? sender, RoutedEventArgs e)
++    /*private void menuPromotion_Click(object? sender, RoutedEventArgs e)
+     {
+         ProcUtils.ProcessStart($"{Utils.Base64Decode(Global.PromotionUrl)}?t={DateTime.Now.Ticks}");
+-    }
++    }*/
+ 
+     private void menuSettingsSetUWP_Click(object? sender, RoutedEventArgs e)
+     {
+Index: v2rayN/v2rayN/Views/MainWindow.xaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/v2rayN/v2rayN/Views/MainWindow.xaml b/v2rayN/v2rayN/Views/MainWindow.xaml
+--- a/v2rayN/v2rayN/Views/MainWindow.xaml	(revision 2ab1b9068f2fb83492a4e9ef976d0372d3275584)
++++ b/v2rayN/v2rayN/Views/MainWindow.xaml	(revision 4b9084c54d7aefd4bb6c730000617ae28075763e)
+@@ -264,23 +264,6 @@
+                         <Separator />
+                         <Menu Margin="0,1" Style="{StaticResource ToolbarMenu}">
+                             <MenuItem
+-                                x:Name="menuPromotion"
+-                                Padding="8,0"
+-                                AutomationProperties.Name="{x:Static resx:ResUI.menuPromotion}">
+-                                <MenuItem.Header>
+-                                    <StackPanel Orientation="Horizontal">
+-                                        <materialDesign:PackIcon
+-                                            Margin="{StaticResource MarginRight8}"
+-                                            VerticalAlignment="Center"
+-                                            Kind="VolumeHigh" />
+-                                        <TextBlock Text="{x:Static resx:ResUI.menuPromotion}" />
+-                                    </StackPanel>
+-                                </MenuItem.Header>
+-                            </MenuItem>
+-                        </Menu>
+-                        <Separator />
+-                        <Menu Margin="0,1" Style="{StaticResource ToolbarMenu}">
+-                            <MenuItem
+                                 x:Name="menuClose"
+                                 Padding="8,0"
+                                 AutomationProperties.Name="{x:Static resx:ResUI.menuClose}">
+Index: v2rayN/v2rayN/Views/MainWindow.xaml.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/v2rayN/v2rayN/Views/MainWindow.xaml.cs b/v2rayN/v2rayN/Views/MainWindow.xaml.cs
+--- a/v2rayN/v2rayN/Views/MainWindow.xaml.cs	(revision 2ab1b9068f2fb83492a4e9ef976d0372d3275584)
++++ b/v2rayN/v2rayN/Views/MainWindow.xaml.cs	(revision 4b9084c54d7aefd4bb6c730000617ae28075763e)
+@@ -30,7 +30,7 @@
+         this.Closing += MainWindow_Closing;
+         this.PreviewKeyDown += MainWindow_PreviewKeyDown;
+         menuSettingsSetUWP.Click += menuSettingsSetUWP_Click;
+-        menuPromotion.Click += menuPromotion_Click;
++//        menuPromotion.Click += menuPromotion_Click;
+         menuClose.Click += menuClose_Click;
+         menuCheckUpdate.Click += MenuCheckUpdate_Click;
+         menuBackupAndRestore.Click += MenuBackupAndRestore_Click;
+@@ -323,10 +323,10 @@
+         ShowHideWindow(false);
+     }
+ 
+-    private void menuPromotion_Click(object sender, RoutedEventArgs e)
++    /*private void menuPromotion_Click(object sender, RoutedEventArgs e)
+     {
+         ProcUtils.ProcessStart($"{Utils.Base64Decode(Global.PromotionUrl)}?t={DateTime.Now.Ticks}");
+-    }
++    }*/
+ 
+     private void menuSettingsSetUWP_Click(object sender, RoutedEventArgs e)
+     {
